@@ -18,12 +18,7 @@ export default {
 </script>
 
 <template>
-    <ul v-for="film in filmsList" :key="film.id">
-            <li>{{ film.title }} </li>
-            <li>{{ film.original_title }} </li>
-            <li>{{film.original_language }}</li>
-            <li>{{ film.vote_average }}</li>
-    </ul>
+    <MainSingleFilm  v-for="film in filmsList" :key="film.id" :filmsList="film" />
 </template>
 
 <style scoped lang="scss">
