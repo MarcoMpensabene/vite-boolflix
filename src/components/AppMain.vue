@@ -36,13 +36,16 @@ export default {
     <!-- <MainFilmList /> -->
     <div>
         <label for="title">Type films title</label>
-        <input type="text" id="title-search" name="title-search" v-model="userInput">
+        <input type="text" id="title-search" name="title-search" v-model="userInput" @keyup.enter="getFilms">
         <button @click="getFilms">PRESS</button>
     </div>
 
     <div >
-        <ul>
-            <li v-for="film in filmsList" :key="film.id">{{ film.title }}</li>
+        <ul v-for="film in filmsList" :key="film.id">
+            <li>{{ film.title }} </li>
+            <li>{{ film.original_title }} </li>
+            <li>{{film.original_language }}</li>
+            <li>{{ film.vote_average }}</li>
         </ul>
     </div>
 </template>
