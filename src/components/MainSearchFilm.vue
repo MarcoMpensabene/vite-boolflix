@@ -11,8 +11,8 @@ export default {
 <template>
     <div>
         <label for="title">Type films title</label>
-        <input type="text" id="title-search" name="title-search" v-model="userInput" @keyup.enter="$emit('filmsList' , userInput)">
-        <button @click="$emit('filmsList' , userInput)">PRESS</button>
+        <input type="text" id="title-search" name="title-search" v-model="userInput" @keyup.enter="$emit('searchChannel' , userInput)">
+        <button @click="$emit('searchChannel' , userInput)">PRESS</button>
     </div>
 </template>
 
