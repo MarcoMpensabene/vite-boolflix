@@ -6,7 +6,7 @@ import MainSeriesList from "./MainSeriesList.vue";
 export default {
     components : {
         MainFilmList ,
-        MainSearchFilm,
+        MainSearch,
         MainSeriesList,
     },
     data() {
@@ -46,7 +46,7 @@ export default {
 
 <template>
     <main>
-        <MainSearchFilm @searchChannel="search" />
+        <MainSearch @searchChannel="search" />
         <MainFilmList :filmsList="filmsList"/>
         <MainSeriesList :listSeries="listSeries"/>
     </main>
