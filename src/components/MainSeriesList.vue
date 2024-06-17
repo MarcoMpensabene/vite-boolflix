@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-    <MainSingleSeries  v-for="serie in listSeries" :key="serie.id"  :listSeries="listSeries" />
+    <MainSingleSeries  v-for="serie in listSeries" :key="serie.id"  :listSeries="serie" />
 </template>
 
 <style scoped lang="scss">

@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
 import MainFilmList from "./MainFilmList.vue";
-import MainSearchFilm from "./MainSearchFilm.vue";
+import MainSearch from "./MainSearch.vue";
 import MainSeriesList from "./MainSeriesList.vue";
 export default {
     components : {
@@ -27,7 +27,7 @@ export default {
                 })
         },
         getSeries(input){
-            axios.get('https://api.themoviedb.org/3/search/tv?api_key=391d0ce22ac893e9dbe22be6b0ef6c6a&language=it_IT&query=' + input)
+            axios.get('https://api.themoviedb.org/3/search/tv?api_key=391d0ce22ac893e9dbe22be6b0ef6c6a&query=' + input)
                 .then( (response) => {
                     console.log(response.data.results);
                     this.listSeries = response.data.results;
@@ -36,7 +36,7 @@ export default {
                     console.log(error);
                 })
         },
-        searchFilms(userInput){
+        search(userInput){
             this.getFilms(userInput);
             this.getSeries(userInput);
         }
@@ -46,7 +46,7 @@ export default {
 
 <template>
     <main>
-        <MainSearchFilm @searchChannel="searchFilms" />
+        <MainSearchFilm @searchChannel="search" />
         <MainFilmList :filmsList="filmsList"/>
         <MainSeriesList :listSeries="listSeries"/>
     </main>
