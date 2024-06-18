@@ -9,31 +9,29 @@ export default {
             type : Object, 
             required : true,
         }
+    },
+    methods : {
+        
     }
 }
 </script>
 
 <template>
-<!-- 
-        <ul>
-            <img v-if="filmsList.poster_path" :src="`https://image.tmdb.org/t/p/w342/${filmsList.poster_path}`" alt="">
-            <img v-else src="https://ih0.redbubble.net/image.5218811881.3250/raf,360x360,075,t,fafafa:ca443f4786.jpg" alt="">
-            <li> Title : {{ filmsList.title }} </li>
-            <li>Original Title :{{ filmsList.original_title }} </li>
-            <li>Original Langueage : <span class="lang-icon" :class="`lang-icon-${filmsList.original_language}`"></span></li>
-            <li >Average Vote : {{parseInt(filmsList.vote_average/2)}}</li>
-        </ul> -->
 
         <div class="wrapper">
             <div class="card">
                 <img v-if="filmsList.poster_path" :src="`https://image.tmdb.org/t/p/w342/${filmsList.poster_path}`" alt="">
                 <img v-else src="https://ih0.redbubble.net/image.5218811881.3250/raf,360x360,075,t,fafafa:ca443f4786.jpg" alt="">
                 <div class="descriptions">
-                    <h1> Title : {{ filmsList.title }}</h1>
-                    <h2>Original Title :{{ filmsList.original_title }}</h2>
-                    <p>Original Langueage : <span class="lang-icon" :class="`lang-icon-${filmsList.original_language}`"></span></p>
+                    <h1> <span>Title : </span> {{ filmsList.title }}</h1>
+                    <h2><span>Original Title : </span> {{ filmsList.original_title }}</h2>
+                    <p><span> Original language - </span> <span class="lang-icon" :class="`lang-icon-${filmsList.original_language}`"></span></p>
                     <p>
-                        Average Vote : {{Math.floor(filmsList.vote_average/2)}}
+                        <span>Average Vote - </span> {{Math.floor(filmsList.vote_average/2)}}
+                        <div class="vote">
+                            <font-awesome-icon :icon="['fa', 'star']" v-for="(star , index) in 5" :key="index" 
+                            :class="{ active: index < Math.floor(filmsList.vote_average/2) }"  />
+                        </div>
                     </p>
                 </div>
             </div>
@@ -98,13 +96,19 @@ div.wrapper{
     filter: blur(3px);
 }
 .card h1{
-    color: #ff3838;
+    color: #df0707;
     letter-spacing: 1px;
     margin: 0px;
 }
-.card p{
-    line-height: 24px;
-    height: 70%;
+span{
+    color: #6aa84f;
 }
-
+h1,
+h2,
+p{
+    margin-bottom: 1.5rem;
+}
+.active{
+    color: yellow;
+}
 </style>

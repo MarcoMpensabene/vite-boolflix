@@ -21,7 +21,7 @@ header{
 h1{
     display: flex;
     justify-content: center;
-
+    padding: 2rem;
     color: red;
 }
 </style>

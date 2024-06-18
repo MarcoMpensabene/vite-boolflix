@@ -14,24 +14,20 @@ export default {
 </script>
 
 <template>
-    <!-- <ul>
-        <img v-if="listSeries.poster_path" :src="`https://image.tmdb.org/t/p/w342/${listSeries.poster_path}`" alt="">
-        <img v-else src="https://ih0.redbubble.net/image.5218811881.3250/raf,360x360,075,t,fafafa:ca443f4786.jpg" alt="">
-        <li>Title : {{ listSeries.original_name }} </li>
-        <li>Original Title :{{ listSeries.name }} </li>
-        <li>Original Langueage : <span class="lang-icon" :class="`lang-icon-${listSeries.original_language}`"></span></li>
-        <li>Average Vote : {{parseInt(listSeries.vote_average/2)}}</li>
-    </ul> -->
     <div class="wrapper">
             <div class="card">
                 <img v-if="listSeries.poster_path" :src="`https://image.tmdb.org/t/p/w342/${listSeries.poster_path}`" alt="">
                 <img v-else src="https://ih0.redbubble.net/image.5218811881.3250/raf,360x360,075,t,fafafa:ca443f4786.jpg" alt="">
                 <div class="descriptions">
-                    <h1> Title : {{ listSeries.name }} </h1>
-                    <h2>Original Title :{{ listSeries.original_name }}</h2>
-                    <p>Original Langueage : <span class="lang-icon" :class="`lang-icon-${listSeries.original_language}`"></span></p>
+                    <h1> <span>Title : </span>{{ listSeries.name }} </h1>
+                    <h2><span>Original Title : </span>{{ listSeries.original_name }}</h2>
+                    <p><span> Original language - </span><span class="lang-icon" :class="`lang-icon-${listSeries.original_language}`"></span></p>
                     <p>
-                        Average Vote : {{Math.floor(listSeries.vote_average/2)}}
+                        <span>Average Vote - </span> {{Math.floor(listSeries.vote_average/2)}}
+                        <div class="vote">
+                            <font-awesome-icon :icon="['fa', 'star']" v-for="(star , index) in 5" :key="index"
+                            :class="{ active: index < Math.floor(listSeries.vote_average/2) }"/>
+                        </div>
                     </p>
                 </div>
             </div>
@@ -54,7 +50,6 @@ div.wrapper{
     flex: 1;
     flex-basis: 300px;
     flex-grow: 0;
-    height: 440px;
     background: #fff;
     border: 2px solid #fff;
     box-shadow: 0px 4px 7px rgba(0,0,0,.5);
@@ -79,6 +74,7 @@ div.wrapper{
     padding: 20px;
     box-sizing: border-box;
     clip-path: circle(0% at 100% 100%);
+
 }
 .card:hover .descriptions{
     left:0px;
@@ -96,12 +92,20 @@ div.wrapper{
     filter: blur(3px);
 }
 .card h1{
-    color: #ff3838;
+    color: #df0707;
     letter-spacing: 1px;
     margin: 0px;
 }
-.card p{
-    line-height: 24px;
-    height: 70%;
+span{
+    color: #6aa84f;
 }
+h1,
+h2,
+p{
+    margin-bottom: 1.5rem;
+}
+.active{
+    color: yellow;
+}
+
 </style>
