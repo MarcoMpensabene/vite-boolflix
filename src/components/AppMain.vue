@@ -45,13 +45,18 @@ export default {
 </script>
 
 <template>
-    <main>
+    <section>
         <MainSearch @searchChannel="search" />
+    </section>
+    <main>
         <MainFilmList :filmsList="filmsList"/>
         <MainSeriesList :listSeries="listSeries"/>
     </main>
 </template>
 
 <style scoped>
-
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
 </style>

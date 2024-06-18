@@ -14,19 +14,94 @@ export default {
 </script>
 
 <template>
-    <ul>
+    <!-- <ul>
         <img v-if="listSeries.poster_path" :src="`https://image.tmdb.org/t/p/w342/${listSeries.poster_path}`" alt="">
         <img v-else src="https://ih0.redbubble.net/image.5218811881.3250/raf,360x360,075,t,fafafa:ca443f4786.jpg" alt="">
         <li>Title : {{ listSeries.original_name }} </li>
         <li>Original Title :{{ listSeries.name }} </li>
         <li>Original Langueage : <span class="lang-icon" :class="`lang-icon-${listSeries.original_language}`"></span></li>
         <li>Average Vote : {{parseInt(listSeries.vote_average/2)}}</li>
-    </ul>
+    </ul> -->
+    <div class="wrapper">
+            <div class="card">
+                <img v-if="listSeries.poster_path" :src="`https://image.tmdb.org/t/p/w342/${listSeries.poster_path}`" alt="">
+                <img v-else src="https://ih0.redbubble.net/image.5218811881.3250/raf,360x360,075,t,fafafa:ca443f4786.jpg" alt="">
+                <div class="descriptions">
+                    <h1> Title : {{ listSeries.name }} </h1>
+                    <h2>Original Title :{{ listSeries.original_name }}</h2>
+                    <p>Original Langueage : <span class="lang-icon" :class="`lang-icon-${listSeries.original_language}`"></span></p>
+                    <p>
+                        Average Vote : {{Math.floor(listSeries.vote_average/2)}}
+                    </p>
+                </div>
+            </div>
+        </div>
 </template>
 
 <style scoped lang="scss">
 @use '../styles/flags.scss';
 .lang-icon {
     background-image: url(../../node_modules/@textabledev/langs-flags-list/lang-flags.png);
+}
+div.wrapper{
+    width: calc(100% / 5 - 1rem);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    flex: wrap;
+}
+.card{
+    flex: 1;
+    flex-basis: 300px;
+    flex-grow: 0;
+    height: 440px;
+    background: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0px 4px 7px rgba(0,0,0,.5);
+    cursor: pointer;
+    transition: all .5s cubic-bezier(.8,.5,.2,1.4);
+    overflow: hidden;
+    position: relative;
+}
+.card img{
+    width: 100%;
+    height:100%;
+    transition: all .5s cubic-bezier(.8,.5,.2,1.4);
+}
+.descriptions{
+    position: absolute;
+    top:0px;
+    left:0px;
+    background-color: rgba(255,255,255,.7);
+    width:100%;
+    height:100%;
+    transition: all .7s ease-in-out;
+    padding: 20px;
+    box-sizing: border-box;
+    clip-path: circle(0% at 100% 100%);
+}
+.card:hover .descriptions{
+    left:0px;
+    transition: all .7s ease-in-out;
+    clip-path: circle(75%);
+}
+.card:hover{
+    transition: all .5s cubic-bezier(.8,.5,.2,1.4);
+    box-shadow: 0px 2px 3px rgba(0,0,0,.3);
+    transform: scale(.97);
+}
+.card:hover img{
+    transition: all .5s cubic-bezier(.8,.5,.2,1.4);
+    transform: scale(1.6) rotate(20deg);
+    filter: blur(3px);
+}
+.card h1{
+    color: #ff3838;
+    letter-spacing: 1px;
+    margin: 0px;
+}
+.card p{
+    line-height: 24px;
+    height: 70%;
 }
 </style>
